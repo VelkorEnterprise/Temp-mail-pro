@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: '/Temp-mail-pro/', // Matches repository name for GitHub Pages
+      base: '/Temp-mail-pro/', // CRITICAL: Must match repository name exactly
       server: {
         port: 3000,
         host: '0.0.0.0',

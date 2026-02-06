@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": ".",
+  "homepage": "https://velkorenterprise.github.io/Temp-mail-pro/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
