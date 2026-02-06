@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Message } from '../types.ts';
 import { Icons } from './Icons.tsx';
-import { keywords } from '../keywords.ts';
+import { keywords } from '../services/keywords.ts';
 import { useTranslation } from '../LanguageContext.tsx';
 
 interface EmailListProps {

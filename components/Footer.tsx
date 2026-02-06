@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { keywords } from '../keywords.ts';
+import { keywords } from '../services/keywords.ts';
 import { useTranslation, languages } from '../LanguageContext.tsx';
 import { Icons } from './Icons.tsx';
 
