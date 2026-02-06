@@ -81,6 +81,7 @@ const App: React.FC = () => {
             setMessages([]);
             setError(null); 
         } catch (err: any) {
+            console.error(err);
             setError(err.message || 'Service busy. Please try again in a moment.');
         } finally {
             clearLoadingInterval();
@@ -195,6 +196,21 @@ const App: React.FC = () => {
                         />
                         <div className="bg-[#f8f9fa] py-16">
                             <div className="max-w-4xl mx-auto px-4 w-full">
+                                {error && (
+                                    <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center justify-between gap-4 text-red-600 animate-fade-in">
+                                        <div className="flex items-center gap-3">
+                                            <Icons.Error className="w-5 h-5 flex-shrink-0" />
+                                            <span className="text-sm font-bold">{error}</span>
+                                        </div>
+                                        <button 
+                                            onClick={handleGetNewEmail}
+                                            className="px-4 py-2 bg-red-600 text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-red-700 transition-colors"
+                                        >
+                                            {t('tryAgain') || 'Retry'}
+                                        </button>
+                                    </div>
+                                )}
+
                                 <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
                                     <button 
                                         onClick={loadInbox} 
@@ -263,9 +279,16 @@ const App: React.FC = () => {
                 .animate-spin-fast {
                     animation: spin 0.6s linear infinite;
                 }
+                .animate-fade-in {
+                    animation: fadeIn 0.5s ease-out;
+                }
                 @keyframes spin {
                     from { transform: rotate(0deg); }
                     to { transform: rotate(360deg); }
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(-10px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
             `}</style>
         </div>
