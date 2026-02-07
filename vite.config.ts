@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: '/Temp-mail-pro/', // CRITICAL: Must match repository name exactly
+      base: './', // Changed to relative path to support both GitHub Pages and Cloudflare Pages automatically
       server: {
         port: 3000,
         host: '0.0.0.0',
