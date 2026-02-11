@@ -9,13 +9,16 @@ const RAPID_API_KEY = (typeof process !== 'undefined' && process.env) ? process.
 const fetchWithTimeout = async (resource: RequestInfo, options: RequestInit & { timeout?: number } = {}) => {
   const { timeout = 8000 } = options;
   const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeout);
-  const response = await fetch(resource, {
-    ...options,
-    signal: controller.signal,
-  });
-  clearTimeout(id);
-  return response;
+  const id = setTimeout(() => controller.abort(new Error('Request timed out')), timeout);
+  try {
+    const response = await fetch(resource, {
+      ...options,
+      signal: controller.signal,
+    });
+    return response;
+  } finally {
+    clearTimeout(id);
+  }
 };
 
 const createMailTmAccount = async (): Promise<EmailAccount> => {
